@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch } from 'react';
 import MasonryLayout from './MasonryLayout';
 import { client } from '../client';
 import { feedQuery, searchQuery } from '../utils/data';
@@ -7,6 +7,7 @@ import { Pin } from '../types/schema';
 
 interface Props {
   searchTerm: string;
+  setSearchTerm: Dispatch<React.SetStateAction<string>>;
 }
 
 const Search: React.FC<Props> = ({ searchTerm }) => {

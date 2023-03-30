@@ -32,14 +32,14 @@ const CreatePin: React.FC<Props> = ({ user }) => {
   const navigate = useNavigate();
 
   const uploadImage = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
     const { type, name } = e.target.files[0];
 
     if (
       type === 'image/png' ||
       type === 'image/svg' ||
       type === 'image/jpeg' ||
-      type === 'image/gif' ||
-      e.target.files !== null
+      type === 'image/gif'
     ) {
       setWrongImageType(false);
       setLoading(true);

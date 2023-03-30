@@ -102,7 +102,19 @@ export interface Pin extends SanityDocument {
    */
   image?: {
     _type: "image";
-    asset: SanityReference<SanityImageAsset>;
+    asset: {
+      _type: 'sanity.imageAsset';
+      assetId: string;
+      extension: string;
+      metadata: SanityImageMetadata;
+      mimeType: string;
+      originalFilename: string;
+      path: string;
+      sha1hash: string;
+      size: number;
+      uploadId: string;
+      url: string;
+  };
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
@@ -182,6 +194,24 @@ export interface Save extends SanityDocument {
   userId?: string;
 }
 
-export type PostedBy = SanityReference<User>;
+// export type PostedBy = SanityReference<User>;
+
+export interface PostedBy extends SanityDocument {
+  _type: "user";
+
+  /**
+   * UserName — `string`
+   *
+   *
+   */
+  userName?: string;
+
+  /**
+   * Image — `string`
+   *
+   *
+   */
+  image?: string;
+}
 
 export type Documents = User | Pin | Comment | Save;
