@@ -20,7 +20,7 @@ const Pin: React.FC<Props> = ({ pin }) => {
   const user = fetchUser();
 
   const alreadySaved = !!pin?.save?.filter(
-    (item) => item?.postedBy?._id === user.id
+    (item) => item?.postedBy?._id === user?.id
   )?.length;
 
   const savePin = (id: PatchSelection) => {
@@ -32,10 +32,10 @@ const Pin: React.FC<Props> = ({ pin }) => {
         .insert('after', 'save[-1]', [
           {
             _key: uuidv4(),
-            userId: user.id,
+            userId: user?.id,
             postedBy: {
               _type: 'postedBy',
-              _ref: user.id,
+              _ref: user?.id,
             },
           },
         ])
@@ -118,7 +118,7 @@ const Pin: React.FC<Props> = ({ pin }) => {
                   </p>
                 </a>
               )}
-              {pin.postedBy?._id === user.id && (
+              {pin.postedBy?._id === user?.id && (
                 <button
                   type='button'
                   onClick={(e) => {
